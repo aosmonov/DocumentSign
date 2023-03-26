@@ -7,8 +7,15 @@ body {
     text-align: center;
 }
 
-.results {
-    
+.mainTable {
+    margin: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.mainTable td, .maintTable tr {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 .documentRow {

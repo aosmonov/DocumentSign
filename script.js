@@ -301,11 +301,10 @@ async function createDocument() {
 
 async function getDocuments() {
     const maxID = Number(await contract.documentId());
-    let resStr = `<div><div class='documentRow documentId'><b>Info</b></div>
-    <div class='documentRow documentSignCount'><b>Sign Count</b></div>
-    <div class='documentRow documentButton'><b>Action</b></div>
-    <div class='documentRow documentSigners'><b>Signers</b></div>
-    </div>`
+    let resStr = `<table class='mainTable'><tr><td><b>Info</b></td>
+    <td><b>Sign Count</b></td>
+    <td><b>Action</b></td>
+    <td><b>Signers</b></td></tr>`
 
     for (let id = maxID; id >= 1; id--) {
         let result = await contract.documents(id)
@@ -318,12 +317,13 @@ async function getDocuments() {
           signers += `<p style='font-size: 0.8em;'>${signersResult[i]}</p>`;
         }
 
-        resStr += `<div><div class='documentRow documentId'>${result.info}</div>
-          <div class='documentRow documentSignCount'>${result.signatureCount}</div>
-          <div class='documentRow documentButton'><a href="#" onclick='sign(${id})'>Sign</a></div>
-          <div class='documentRow documentSigners'>${signers}</div>
-          </div>`
+        resStr += `<tr><td>${result.info}</td>
+          <td>${result.signatureCount}</td>
+          <td><a href="#" onclick='sign(${id})'>Sign</a></td>
+          <td>${signers}</td>
+          </tr>`
     }
+    resStr += '</table>';
     document.getElementById('results').innerHTML = resStr
 }
 
