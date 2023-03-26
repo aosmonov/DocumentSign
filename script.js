@@ -292,45 +292,39 @@ provider.send("eth_requestAccounts", []).then(() => {
 
 async function createDocument() {
     const documentText = document.getElementById("docText").value;
+    console.log("Creating document with text: " + documentText)
     await contract.createDocument(documentText);
-    setTimeout(
-        window.location = window.location.href,
-        7000
-    )
+    document.getElementById("docText").value = ""
 }
 
 async function getDocuments() {
     const maxID = Number(await contract.documentId());
-    let resStr = `<table class='mainTable'><tr><td><b>Info</b></td>
-    <td><b>Sign Count</b></td>
-    <td><b>Action</b></td>
-    <td><b>Signers</b></td></tr>`
+    let resStr = "";
 
     for (let id = maxID; id >= 1; id--) {
         let result = await contract.documents(id)
 
-        console.log(result);
-
         let signers = '';
         let signersResult = await contract.getSigners(id);
         for(let i = 0; i < signersResult.length; i++) {
-          signers += `<p style='font-size: 0.8em;'>${signersResult[i]}</p>`;
+          if(signers.length > 0) {
+            signers += "<br/>";
+          }
+          signers += `${signersResult[i]}`;
         }
 
         resStr += `<tr><td>${result.info}</td>
           <td>${result.signatureCount}</td>
-          <td><a href="#" onclick='sign(${id})'>Sign</a></td>
           <td>${signers}</td>
+          <td><button class="btn btn-info" onclick='sign(${id})'>Sign</button></td>
           </tr>`
     }
-    resStr += '</table>';
+    
     document.getElementById('results').innerHTML = resStr
+
+    setTimeout(getDocuments, 7000);
 }
 
 async function sign(docId) {
     await contract.signDocument(docId);
-    setTimeout(
-        window.location = window.location.href,
-        7000
-    )
 }
