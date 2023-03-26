@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h3>Enter you document to text area and press add</h3>
+        <div>
+            <textarea id="docText" cols="50" rows="10"></textarea>
+        </div>
+        <div><button onclick="createDocument()">Add</button></div>
+
+        <div>
+            <h4>Added documents</h4>
+            <div id="results" class="results">
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="script.js" type="application/javascript"/>
+</body>
+</html>

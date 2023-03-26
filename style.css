@@ -1,0 +1,35 @@
+body {
+    font-size: 1.1em;
+}
+
+
+.container {
+    text-align: center;
+}
+
+.results {
+    
+}
+
+.documentRow {
+    display: inline-block;
+    border: solid 1px black;
+    height: 100%;
+}
+
+.documentId {
+    width: 200px;
+}
+
+.documentSignCount {
+    width: 100px;
+}
+
+.documentButton {
+    width: 100px;
+}
+
+.documentSigners {
+    width: 350px;
+}
+
