@@ -295,6 +295,7 @@ async function createDocument() {
     console.log("Creating document with text: " + documentText)
     await contract.createDocument(documentText);
     document.getElementById("docText").value = ""
+    setTimeout(getDocuments, 7000);
 }
 
 async function getDocuments() {
@@ -321,10 +322,9 @@ async function getDocuments() {
     }
     
     document.getElementById('results').innerHTML = resStr
-
-    setTimeout(getDocuments, 7000);
 }
 
 async function sign(docId) {
     await contract.signDocument(docId);
+    setTimeout(getDocuments, 10000);
 }
